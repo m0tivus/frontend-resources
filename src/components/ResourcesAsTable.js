@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function removeResource(props, resource, enqueueSnackbar, setSelected) {
+/* async function removeResource(props, resource, enqueueSnackbar, setSelected) {
   if (setSelected && props.parentSelections) {
     await props.model.remove(...props.parentSelections, resource.id);
     setSelected(undefined);
@@ -62,7 +62,7 @@ async function removeResource(props, resource, enqueueSnackbar, setSelected) {
       horizontal: "center",
     },
   });
-}
+} */
 
 const formatter = new Intl.NumberFormat("es-CL", {
   style: "currency",
@@ -94,7 +94,7 @@ function ResourcesAsTable({
 }) {
   const { fields } = props.model;
   const classes = useStyles();
-  const { enqueueSnackbar } = useSnackbar();
+  //const { enqueueSnackbar } = useSnackbar();
 
   return (
     enoughSelections && (

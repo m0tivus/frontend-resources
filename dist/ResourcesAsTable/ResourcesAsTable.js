@@ -25,25 +25,9 @@ var _notistack = require("notistack");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var useStyles = (0, _styles.makeStyles)(function (theme) {
   return {
@@ -65,58 +49,23 @@ var useStyles = (0, _styles.makeStyles)(function (theme) {
     }
   };
 });
+/* async function removeResource(props, resource, enqueueSnackbar, setSelected) {
+  if (setSelected && props.parentSelections) {
+    await props.model.remove(...props.parentSelections, resource.id);
+    setSelected(undefined);
+  } else {
+    await props.model.remove(resource.id);
+  }
 
-function removeResource(_x, _x2, _x3, _x4) {
-  return _removeResource.apply(this, arguments);
-}
-
-function _removeResource() {
-  _removeResource = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(props, resource, enqueueSnackbar, setSelected) {
-    var _props$model;
-
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            if (!(setSelected && props.parentSelections)) {
-              _context.next = 6;
-              break;
-            }
-
-            _context.next = 3;
-            return (_props$model = props.model).remove.apply(_props$model, _toConsumableArray(props.parentSelections).concat([resource.id]));
-
-          case 3:
-            setSelected(undefined);
-            _context.next = 8;
-            break;
-
-          case 6:
-            _context.next = 8;
-            return props.model.remove(resource.id);
-
-          case 8:
-            _context.next = 10;
-            return props.refreshData();
-
-          case 10:
-            enqueueSnackbar("Se eliminó con éxito", {
-              variant: "success",
-              anchorOrigin: {
-                vertical: "top",
-                horizontal: "center"
-              }
-            });
-
-          case 11:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _removeResource.apply(this, arguments);
-}
+  await props.refreshData();
+  enqueueSnackbar("Se eliminó con éxito", {
+    variant: "success",
+    anchorOrigin: {
+      vertical: "top",
+      horizontal: "center",
+    },
+  });
+} */
 
 var formatter = new Intl.NumberFormat("es-CL", {
   style: "currency",
@@ -152,10 +101,7 @@ function ResourcesAsTable(_ref) {
       props = _objectWithoutProperties(_ref, ["enoughSelections", "resources", "selected", "setSelected", "allowCreation"]);
 
   var fields = props.model.fields;
-  var classes = useStyles();
-
-  var _useSnackbar = (0, _notistack.useSnackbar)(),
-      enqueueSnackbar = _useSnackbar.enqueueSnackbar;
+  var classes = useStyles(); //const { enqueueSnackbar } = useSnackbar();
 
   return enoughSelections && /*#__PURE__*/_react.default.createElement(_core.Grid, {
     item: true,

@@ -1,6 +1,6 @@
 {
   "name": "@m0tivus/frontend-resources",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
