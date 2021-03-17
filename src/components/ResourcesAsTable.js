@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/* async function removeResource(props, resource, enqueueSnackbar, setSelected) {
+async function removeResource(props, resource, enqueueSnackbar, setSelected) {
   if (setSelected && props.parentSelections) {
     await props.model.remove(...props.parentSelections, resource.id);
     setSelected(undefined);
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
       horizontal: "center",
     },
   });
-} */
+}
 
 const formatter = new Intl.NumberFormat("es-CL", {
   style: "currency",
@@ -94,7 +94,7 @@ function ResourcesAsTable({
 }) {
   const { fields } = props.model;
   const classes = useStyles();
-  //const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   return (
     enoughSelections && (
@@ -170,7 +170,8 @@ function ResourcesAsTable({
                               : classes.notSelectedRow
                           }
                         >
-                          {/* <ButtonGroup variant='contained' color='primary'>
+                          <ButtonGroup variant="contained" color="primary">
+                            {/*
                             <ResourcesModalForm
                               mode='edit'
                               resource={r}
@@ -182,21 +183,22 @@ function ResourcesAsTable({
                               }
                               {...props}
                             />
+                            */}
                             <IconButton
-                              color='inherit'
-                              variant='contained'
+                              color="inherit"
+                              variant="contained"
                               onClick={() =>
                                 removeResource(
                                   props,
                                   r,
                                   enqueueSnackbar,
-                                  setSelected,
+                                  setSelected
                                 )
                               }
                             >
-                              <DeleteIcon fontSize='small' />
+                              <DeleteIcon fontSize="small" />
                             </IconButton>
-                          </ButtonGroup> */}
+                          </ButtonGroup>
                         </TableCell>
                       )}
                     </TableRow>

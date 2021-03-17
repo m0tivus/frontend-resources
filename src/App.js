@@ -1,9 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Title } from "@m0tivus/frontend-resources";
-import ResourcesAsTable from "./components/ResourcesAsTable";
+import { Title, ResourcesAsTable } from "@m0tivus/frontend-resources";
+//import ResourcesAsTable from "./components/ResourcesAsTable";
+import { SnackbarProvider } from "notistack";
 
 function App() {
+  const parentSelections = [];
   const resources = [
     { id: 1, name: "Jelbo", unit_price: 2121 },
     { id: 2, name: "Wera", unit_price: 121 },
@@ -23,7 +25,14 @@ function App() {
         </p>
         <Title />
         <div style={{ width: "1000px" }}>
-          <ResourcesAsTable model={model} resources={resources} title="Test" />
+          <SnackbarProvider>
+            <ResourcesAsTable
+              model={model}
+              resources={resources}
+              title="Test"
+              parentSelections={parentSelections}
+            />
+          </SnackbarProvider>
         </div>
         <a
           className="App-link"
