@@ -22,7 +22,9 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <Title />
-        <ResourcesAsTable model={model} resources={resources} title="Test" />
+        <div style={{ width: "1000px" }}>
+          <ResourcesAsTable model={model} resources={resources} title="Test" />
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"

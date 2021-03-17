@@ -37,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   tableContainer: {
-    position: "absolute",
+    position: "relative",
     height: "calc(100% - 8px)",
-    width: "calc(100% - 8px)",
+    width: "100%",
     margin: "4px",
     top: 0,
     left: 0,
