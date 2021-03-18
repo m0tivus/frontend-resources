@@ -3,8 +3,13 @@ import "./App.css";
 import { Title, ResourcesAsTable } from "@m0tivus/frontend-resources";
 //import ResourcesAsTable from "./components/ResourcesAsTable";
 import { SnackbarProvider } from "notistack";
+import asPage from "./lib/asPage";
+import { ThemeProvider, useTheme } from "@material-ui/core";
+
+const Page = asPage({ title: "pagina de prueba" })(ResourcesAsTable);
 
 function App() {
+  const theme = useTheme();
   const parentSelections = [];
   const resources = [
     { id: 1, name: "Jelbo", unit_price: 2121 },
@@ -25,16 +30,18 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <Title />
-        <div style={{ width: "1000px" }}>
-          <SnackbarProvider>
-            <ResourcesAsTable
-              model={model}
-              resources={resources}
-              title="Test"
-              parentSelections={parentSelections}
-            />
-          </SnackbarProvider>
-        </div>
+        <ThemeProvider theme={theme}>
+          <div style={{ width: "100%" }}>
+            <SnackbarProvider>
+              <Page
+                model={model}
+                resources={resources}
+                title="Test"
+                parentSelections={parentSelections}
+              />
+            </SnackbarProvider>
+          </div>
+        </ThemeProvider>
         <a
           className="App-link"
           href="https://reactjs.org"

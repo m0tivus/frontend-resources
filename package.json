@@ -1,12 +1,12 @@
 {
   "name": "@m0tivus/frontend-resources",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clean": "rm -rf dist",
-    "prepare-build": "npm run clean && NODE_ENV=production babel lib --out-dir dist --extensions .js --ignore 'lib/**/*.text.js'",
+    "prepare-build": "npm run clean && NODE_ENV=production babel src/lib --out-dir dist --extensions .js --ignore 'src/lib/**/*.text.js'",
     "copy": "cp package.json dist/ && cp README.md dist/",
     "build": "npm run prepare-build && npm run copy"
   },
@@ -55,6 +55,6 @@
     "web-vitals": "^1.1.1"
   },
   "dependencies": {
-    "@m0tivus/frontend-resources": "^0.1.7"
+    "@m0tivus/frontend-resources": "^0.1.8"
   }
 }

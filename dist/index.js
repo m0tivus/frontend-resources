@@ -39,6 +39,12 @@ Object.defineProperty(exports, "TextFieldCustom", {
     return _TextFieldCustom.default;
   }
 });
+Object.defineProperty(exports, "asPage", {
+  enumerable: true,
+  get: function get() {
+    return _asPage.default;
+  }
+});
 
 var _Title = _interopRequireDefault(require("./Title"));
 
@@ -51,5 +57,7 @@ var _FormElement = _interopRequireDefault(require("./FormElement"));
 var _FormSuggested = _interopRequireDefault(require("./FormSuggested"));
 
 var _TextFieldCustom = _interopRequireDefault(require("./TextFieldCustom"));
+
+var _asPage = _interopRequireDefault(require("./asPage"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
