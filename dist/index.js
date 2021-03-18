@@ -15,9 +15,41 @@ Object.defineProperty(exports, "ResourcesAsTable", {
     return _ResourcesAsTable.default;
   }
 });
+Object.defineProperty(exports, "ResourcesModalForm", {
+  enumerable: true,
+  get: function get() {
+    return _ResourcesModalForm.default;
+  }
+});
+Object.defineProperty(exports, "FormElement", {
+  enumerable: true,
+  get: function get() {
+    return _FormElement.default;
+  }
+});
+Object.defineProperty(exports, "FormSuggested", {
+  enumerable: true,
+  get: function get() {
+    return _FormSuggested.default;
+  }
+});
+Object.defineProperty(exports, "TextFieldCustom", {
+  enumerable: true,
+  get: function get() {
+    return _TextFieldCustom.default;
+  }
+});
 
 var _Title = _interopRequireDefault(require("./Title/Title"));
 
 var _ResourcesAsTable = _interopRequireDefault(require("./ResourcesAsTable/ResourcesAsTable"));
+
+var _ResourcesModalForm = _interopRequireDefault(require("./ResourcesModalForm/ResourcesModalForm"));
+
+var _FormElement = _interopRequireDefault(require("./FormElement/FormElement"));
+
+var _FormSuggested = _interopRequireDefault(require("./FormSuggested/FormSuggested"));
+
+var _TextFieldCustom = _interopRequireDefault(require("./TextFieldCustom/TextFieldCustom"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

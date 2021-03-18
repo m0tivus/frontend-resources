@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Title, ResourcesAsTable } from "@m0tivus/frontend-resources";
-//import ResourcesAsTable from "./components/ResourcesAsTable";
+import { Title } from "@m0tivus/frontend-resources";
+import ResourcesAsTable from "./components/ResourcesAsTable";
 import { SnackbarProvider } from "notistack";
 
 function App() {

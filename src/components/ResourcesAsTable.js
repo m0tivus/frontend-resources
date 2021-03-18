@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import clsx from "clsx";
 
-//import ResourcesModalForm from 'components/ResourcesModalForm'
+import ResourcesModalForm from "./ResourcesModalForm";
 import { format } from "date-fns";
 import { useSnackbar } from "notistack";
 
@@ -171,19 +171,18 @@ function ResourcesAsTable({
                           }
                         >
                           <ButtonGroup variant="contained" color="primary">
-                            {/*
                             <ResourcesModalForm
-                              mode='edit'
+                              mode="edit"
                               resource={r}
                               resources={resources}
                               buttonComponent={
-                                <IconButton color='inherit' variant='contained'>
-                                  <EditIcon fontSize='small' />
+                                <IconButton color="inherit" variant="contained">
+                                  <EditIcon fontSize="small" />
                                 </IconButton>
                               }
                               {...props}
                             />
-                            */}
+
                             <IconButton
                               color="inherit"
                               variant="contained"
@@ -220,13 +219,13 @@ function ResourcesAsTable({
               )}
             </TableBody>
           </Table>
-          {/* {allowCreation && !props.hideAddButton && (
+          {allowCreation && !props.hideAddButton && (
             <ResourcesModalForm
               resources={resources}
               setSelected={setSelected}
               {...props}
             />
-          )} */}
+          )}
         </TableContainer>
       </Grid>
     )
