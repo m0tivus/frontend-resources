@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   InputAdornment,
   makeStyles,
@@ -7,55 +7,55 @@ import {
   FormControlLabel,
   Checkbox,
   Box,
-} from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+} from '@material-ui/core'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
-import _ from "lodash";
+import _ from 'lodash'
 
-import FormSuggested from "../FormSuggested/FormSuggested";
-import { DatePicker } from "@material-ui/pickers";
+import FormSuggested from '../FormSuggested/FormSuggested'
+import { DatePicker } from '@material-ui/pickers'
 
 const TextFieldAlba = withStyles(() => ({
   root: {
-    backgroundColor: "white",
-    marginBottom: "10px",
+    backgroundColor: 'white',
+    marginBottom: '10px',
   },
-}))((props) => <TextField {...props} type={props.field.type || "text"} />);
+}))((props) => <TextField {...props} type={props.field.type || 'text'} />)
 
 const DatePickerAlba = withStyles(() => ({
   root: {
-    backgroundColor: "white",
-    marginBottom: "10px",
-    width: "100%",
+    backgroundColor: 'white',
+    marginBottom: '10px',
+    width: '100%',
   },
-}))(DatePicker);
+}))(DatePicker)
 
 const AlbaCheckbox = withStyles(() => ({
   root: {
-    color: "white",
-    "&$checked": {
-      color: "white",
+    color: 'white',
+    '&$checked': {
+      color: 'white',
     },
   },
 
   checked: {},
-}))(Checkbox);
+}))(Checkbox)
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    width: "100%",
-    backgroundColor: "white",
-    marginBottom: "10px",
+    width: '100%',
+    backgroundColor: 'white',
+    marginBottom: '10px',
   },
-}));
+}))
 
 function FormElement({ field, data, ...props }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   switch (field.type) {
-    case "currency":
+    case 'currency':
       if (field.suggestedValue) {
-        return <FormSuggested field={field} data={data} {...props} />;
+        return <FormSuggested field={field} data={data} {...props} />
       } else {
         return (
           <TextFieldAlba
@@ -73,10 +73,10 @@ function FormElement({ field, data, ...props }) {
             field={field}
             {...props}
           />
-        );
+        )
       }
 
-    case "boolean":
+    case 'boolean':
       return (
         <Box width="100%" px={1}>
           <FormControlLabel
@@ -91,9 +91,9 @@ function FormElement({ field, data, ...props }) {
             label={field.name}
           />
         </Box>
-      );
+      )
 
-    case "date":
+    case 'date':
       return (
         <DatePickerAlba
           variant="filled"
@@ -104,7 +104,7 @@ function FormElement({ field, data, ...props }) {
           {...props}
           onChange={(d) => props.setFieldValue(field.field, d)}
         />
-      );
+      )
 
     default:
       if (field.model) {
@@ -114,16 +114,16 @@ function FormElement({ field, data, ...props }) {
             options={data}
             getOptionLabel={(option) => option.name}
             onChange={(event, value) => {
-              const newValue = (value && value.id) || undefined;
-              props.setFieldValue(field.field, newValue);
-              props.setSelectionData(value);
+              const newValue = (value && value.id) || undefined
+              props.setFieldValue(field.field, newValue)
+              props.setSelectionData(value)
             }}
             defaultValue={
               props.resource
                 ? _(props.resource).get(field.editValue) || {
-                    name: "Seleccione ...",
-                  }
-                : ""
+                  name: 'Seleccione ...',
+                }
+                : ''
             } // _(row).get(field.field)
             renderInput={(params) => (
               <TextField
@@ -135,10 +135,10 @@ function FormElement({ field, data, ...props }) {
               />
             )}
           />
-        );
+        )
       } else {
         if (field.suggestedValue) {
-          return <FormSuggested field={field} data={data} {...props} />;
+          return <FormSuggested field={field} data={data} {...props} />
         } else {
           return (
             <TextFieldAlba
@@ -150,10 +150,10 @@ function FormElement({ field, data, ...props }) {
               field={field}
               {...props}
             />
-          );
+          )
         }
       }
   }
 }
 
-export default FormElement;
+export default FormElement

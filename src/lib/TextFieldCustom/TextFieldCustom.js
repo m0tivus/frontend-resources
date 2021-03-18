@@ -1,10 +1,10 @@
-import { withStyles, TextField } from "@material-ui/core";
+import { withStyles, TextField } from '@material-ui/core'
 
 const TextFieldCustom = withStyles(() => ({
   root: {
-    backgroundColor: "white",
-    marginBottom: "10px",
+    backgroundColor: 'white',
+    marginBottom: '10px',
   },
-}))(TextField);
+}))(TextField)
 
-export default TextFieldCustom;
+export default TextFieldCustom

@@ -16,4 +16,14 @@ Al reemplazar el token generado en YOUR_TOKEN del archivo .npmrc, podrás instal
 ```
 npm install @m0tivus/frontend-resources
 ```
+## Requisitos para usar el paquete
 
+Para llamar a asPage es necesario que esté envuelto en un ThemeProvider. Y para llamar a ResourcesAsTable es necesario que esté envuelto en un SnackBarProvider. 
+
+```jsx
+<ThemeProvider theme={theme}>
+    <SnackbarProvider>
+        ...
+    </SnackbarProvider>
+</ThemeProvider>
+```

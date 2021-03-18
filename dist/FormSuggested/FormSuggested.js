@@ -43,7 +43,7 @@ var FormSuggested = function FormSuggested(_ref) {
       setFormFieldValue = _ref.setFieldValue,
       props = _objectWithoutProperties(_ref, ["field", "data", "setFieldValue"]);
 
-  var _React$useState = _react.default.useState(""),
+  var _React$useState = _react.default.useState(''),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       fieldValue = _React$useState2[0],
       setFieldValue = _React$useState2[1];
@@ -63,7 +63,7 @@ var FormSuggested = function FormSuggested(_ref) {
     if (!touched && !props.value) {
       var value = field.suggestedValue(props.selectionData, _objectSpread(_objectSpread({}, props.formValues), props.additionalValues || {}), props.resources);
 
-      if (field.type === "number" || field.type === "currency") {
+      if (field.type === 'number' || field.type === 'currency') {
         value = _lodash.default.toInteger(value);
       }
 
@@ -82,7 +82,7 @@ var FormSuggested = function FormSuggested(_ref) {
     fullWidth: true,
     required: true,
     variant: "filled",
-    type: field.type || "text",
+    type: field.type || 'text',
     name: field.field,
     label: field.name
   }, props, {

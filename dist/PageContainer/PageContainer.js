@@ -20,12 +20,12 @@ var styles = function styles(theme) {
     grid: _defineProperty({
       width: 1200,
       marginTop: 40
-    }, theme.breakpoints.down("sm"), {
-      width: "calc(100% - 20px)"
+    }, theme.breakpoints.down('sm'), {
+      width: 'calc(100% - 20px)'
     }),
     paper: {
       padding: theme.spacing(3),
-      textAlign: "left",
+      textAlign: 'left',
       color: theme.palette.text.secondary
     }
   };

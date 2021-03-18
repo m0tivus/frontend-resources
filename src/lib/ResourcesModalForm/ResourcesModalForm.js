@@ -1,191 +1,191 @@
-import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Button from "@material-ui/core/Button";
-import { useFormik } from "formik";
-import _ from "lodash";
-import { useSnackbar } from "notistack";
-import FormElement from "../FormElement/FormElement";
+import React, { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Modal from '@material-ui/core/Modal'
+import Button from '@material-ui/core/Button'
+import { useFormik } from 'formik'
+import _ from 'lodash'
+import { useSnackbar } from 'notistack'
+import FormElement from '../FormElement/FormElement'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: "absolute",
+    position: 'absolute',
     width: 600,
     backgroundColor: theme.palette.primary.main,
-    color: "white",
+    color: 'white',
     boxShadow: theme.shadows[5],
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    outline: "none",
-    padding: "10px",
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    outline: 'none',
+    padding: '10px',
   },
   avatar: {
-    height: "28px",
-    width: "28px",
-    fontSize: ".8em",
+    height: '28px',
+    width: '28px',
+    fontSize: '.8em',
   },
   yellowTheme: {
-    color: "#fff",
-    backgroundColor: "#bb9832",
+    color: '#fff',
+    backgroundColor: '#bb9832',
   },
   greenTheme: {
-    color: "#fff",
+    color: '#fff',
     backgroundColor: theme.palette.primary.main,
   },
   textField: {
-    width: "100%",
-    backgroundColor: "white",
-    marginBottom: "10px",
+    width: '100%',
+    backgroundColor: 'white',
+    marginBottom: '10px',
   },
   addResource: {
-    textTransform: "none",
-    width: "100%",
+    textTransform: 'none',
+    width: '100%',
   },
-}));
+}))
 
 export default function ResourcesModalForm(props) {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [open, setOpen] = React.useState(false);
-  const [modelData, setModelData] = React.useState({});
+  const [open, setOpen] = React.useState(false)
+  const [modelData, setModelData] = React.useState({})
 
-  const defaultValues = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+  const defaultValues = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
 
   const initialSelection = _(props.model.fields)
     .filter((f) => !f.value)
     .filter((f) => !f.editable)
-    .filter((f) => f.only === "create" || !f.only)
+    .filter((f) => f.only === 'create' || !f.only)
     .filter((f) => f.model)
-    .map("model.resourceKey")
+    .map('model.resourceKey')
     .zipObject(defaultValues)
-    .value();
+    .value()
 
-  const [selectionData, setSelectionData] = React.useState(initialSelection);
-  const { enqueueSnackbar } = useSnackbar();
+  const [selectionData, setSelectionData] = React.useState(initialSelection)
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleOpen = () => {
-    props.setOpenModal ? props.setOpenModal(true) : setOpen(true);
-  };
+    props.setOpenModal ? props.setOpenModal(true) : setOpen(true)
+  }
 
   const handleClose = () => {
-    props.setOpenModal ? props.setOpenModal(false) : setOpen(false);
-  };
+    props.setOpenModal ? props.setOpenModal(false) : setOpen(false)
+  }
 
   const resource = props.editingResource?.id
     ? { ...props.editingResource, ...props.additionalValues }
-    : props.resource;
+    : props.resource
 
   const fieldNames = _(props.model.fields)
     .filter((f) => !f.value)
-    .filter((f) => f.only === "create" || !f.only)
-    .map("field");
+    .filter((f) => f.only === 'create' || !f.only)
+    .map('field')
 
   const form = useFormik({
     initialValues: _(fieldNames)
       .zipObject()
-      .mapValues((_v, k) => (resource ? resource[k] : ""))
+      .mapValues((_v, k) => (resource ? resource[k] : ''))
       .value(),
     enableReinitialize: true,
-  });
+  })
 
   const postForm = () => {
     async function postData() {
       if (!props.model.create) {
-        throw new Error("Missing create function on model");
+        throw new Error('Missing create function on model')
       }
 
-      let values = { ...form.values };
+      let values = { ...form.values }
       if (props.additionalValues) {
-        values = { ...values, ...props.additionalValues };
+        values = { ...values, ...props.additionalValues }
       }
 
       const { id } = await props.model.create(
         ...(props.parentSelections || []),
         values,
-        props.externalState
-      );
-      await props.refreshData();
-      handleClose();
-      enqueueSnackbar("Agregado con éxito", {
-        variant: "success",
+        props.externalState,
+      )
+      await props.refreshData()
+      handleClose()
+      enqueueSnackbar('Agregado con éxito', {
+        variant: 'success',
         anchorOrigin: {
-          vertical: "top",
-          horizontal: "center",
+          vertical: 'top',
+          horizontal: 'center',
         },
-      });
-      form.resetForm();
-      props.setSelected(id);
+      })
+      form.resetForm()
+      props.setSelected(id)
     }
-    postData();
-  };
+    postData()
+  }
 
   const postEditForm = () => {
     async function postData() {
       if (!props.model.edit) {
-        throw new Error("Missing edit function on model");
+        throw new Error('Missing edit function on model')
       }
-      const resource_id = props.editingResource?.id || props.resource.id;
-      let values = { ...form.values };
+      const resource_id = props.editingResource?.id || props.resource.id
+      let values = { ...form.values }
       if (props.additionalValues) {
-        values = { ...values, ...props.additionalValues };
+        values = { ...values, ...props.additionalValues }
       }
       // WARNING: distinto a model.create!!!
       await props.model.edit(
         resource_id,
         values,
-        ...(props.parentSelections || [])
-      );
-      await props.refreshData();
-      handleClose();
-      enqueueSnackbar("Editado con éxito", {
-        variant: "success",
+        ...(props.parentSelections || []),
+      )
+      await props.refreshData()
+      handleClose()
+      enqueueSnackbar('Editado con éxito', {
+        variant: 'success',
         anchorOrigin: {
-          vertical: "top",
-          horizontal: "center",
+          vertical: 'top',
+          horizontal: 'center',
         },
-      });
-      form.resetForm();
+      })
+      form.resetForm()
       /* props.setSelected(id) */
     }
-    postData();
-  };
+    postData()
+  }
 
   const dependantKeys = _(props.model.fields)
     .filter((f) => !f.value)
-    .filter((f) => f.only === "create" || !f.only)
+    .filter((f) => f.only === 'create' || !f.only)
     .map((f) => {
       if (f.model && f.depends) {
-        return f.depends;
+        return f.depends
       }
-      return null;
+      return null
     })
     .filter()
-    .value();
+    .value()
 
-  const dependantValues = _(form.values).pick(dependantKeys).values().value();
+  const dependantValues = _(form.values).pick(dependantKeys).values().value()
 
   const updateModelData = () => {
     _(props.model.fields)
       .filter((f) => !f.value)
-      .filter((f) => f.only === "create" || !f.only)
+      .filter((f) => f.only === 'create' || !f.only)
       .each(async (f) => {
         if (f.model && (!f.depends || form.values[f.depends])) {
-          const depends = form.values[f.depends];
-          const data = await f.model.all(depends);
+          const depends = form.values[f.depends]
+          const data = await f.model.all(depends)
 
-          setModelData((prev) => ({ ...prev, [f.model.collectionKey]: data }));
+          setModelData((prev) => ({ ...prev, [f.model.collectionKey]: data }))
         }
-      });
-  };
+      })
+  }
 
-  useEffect(updateModelData, [...dependantValues]);
+  useEffect(updateModelData, [...dependantValues])
 
-  const mode = props.modalMode ? props.modalMode : props.mode;
+  const mode = props.modalMode ? props.modalMode : props.mode
   const formValues = {
     ...form.values,
     ...(props.additionalValues || {}),
-  };
+  }
   return (
     <div>
       {props.buttonComponent
@@ -208,7 +208,7 @@ export default function ResourcesModalForm(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {mode === "edit" ? (
+        {mode === 'edit' ? (
           /* FORMULARIO EDICIÓN */
           <div className={classes.paper}>
             <h2 id="simple-modal-title">Editar {props.title}</h2>
@@ -216,7 +216,7 @@ export default function ResourcesModalForm(props) {
               {_(props.model.fields)
                 .filter((f) => !f.value)
                 .filter((f) => !f.editable)
-                .filter((f) => f.only === "create" || !f.only)
+                .filter((f) => f.only === 'create' || !f.only)
                 .map((f) => (
                   <FormElement
                     field={f}
@@ -232,9 +232,9 @@ export default function ResourcesModalForm(props) {
                     setSelectionData={(selection) =>
                       f.model
                         ? setSelectionData((prev) => ({
-                            ...prev,
-                            [f.model.resourceKey]: selection,
-                          }))
+                          ...prev,
+                          [f.model.resourceKey]: selection,
+                        }))
                         : {}
                     }
                   />
@@ -259,7 +259,7 @@ export default function ResourcesModalForm(props) {
               {_(props.model.fields)
                 .filter((f) => !f.value)
                 .filter((f) => !f.editable)
-                .filter((f) => f.only === "create" || !f.only)
+                .filter((f) => f.only === 'create' || !f.only)
                 .map((f) => (
                   <FormElement
                     field={f}
@@ -274,9 +274,9 @@ export default function ResourcesModalForm(props) {
                     setSelectionData={(selection) =>
                       f.model
                         ? setSelectionData((prev) => ({
-                            ...prev,
-                            [f.model.resourceKey]: selection,
-                          }))
+                          ...prev,
+                          [f.model.resourceKey]: selection,
+                        }))
                         : {}
                     }
                   />
@@ -295,5 +295,5 @@ export default function ResourcesModalForm(props) {
         )}
       </Modal>
     </div>
-  );
+  )
 }

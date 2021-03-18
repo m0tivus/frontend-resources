@@ -1,2 +1,2 @@
-import ResourcesAsTable from "./ResourcesAsTable";
-export default ResourcesAsTable;
+import ResourcesAsTable from './ResourcesAsTable'
+export default ResourcesAsTable

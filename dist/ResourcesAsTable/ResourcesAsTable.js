@@ -57,13 +57,13 @@ var useStyles = (0, _styles.makeStyles)(function (theme) {
     },
     selectedRow: {
       backgroundColor: theme.palette.primary.main,
-      color: "white"
+      color: 'white'
     },
     tableContainer: {
-      position: "relative",
-      height: "calc(100% - 8px)",
-      width: "100%",
-      margin: "4px",
+      position: 'relative',
+      height: 'calc(100% - 8px)',
+      width: '100%',
+      margin: '4px',
       top: 0,
       left: 0
     }
@@ -104,11 +104,11 @@ function _removeResource() {
             return props.refreshData();
 
           case 10:
-            enqueueSnackbar("Se eliminó con éxito", {
-              variant: "success",
+            enqueueSnackbar('Se eliminó con éxito', {
+              variant: 'success',
               anchorOrigin: {
-                vertical: "top",
-                horizontal: "center"
+                vertical: 'top',
+                horizontal: 'center'
               }
             });
 
@@ -122,23 +122,23 @@ function _removeResource() {
   return _removeResource.apply(this, arguments);
 }
 
-var formatter = new Intl.NumberFormat("es-CL", {
-  style: "currency",
-  currency: "CLP"
+var formatter = new Intl.NumberFormat('es-CL', {
+  style: 'currency',
+  currency: 'CLP'
 });
 
 function renderField(row, field) {
   var value = field.value ? field.value(row) : (0, _lodash.default)(row).get(field.field);
 
   switch (field.type) {
-    case "currency":
+    case 'currency':
       return formatter.format(value);
 
-    case "date":
-      return (0, _dateFns.format)(new Date(value), "dd/MM/yyyy");
+    case 'date':
+      return (0, _dateFns.format)(new Date(value), 'dd/MM/yyyy');
 
-    case "boolean":
-      return value ? "Si" : "No";
+    case 'boolean':
+      return value ? 'Si' : 'No';
 
     default:
       return value;
@@ -169,17 +169,17 @@ function ResourcesAsTable(_ref) {
   , {
     className: (0, _clsx.default)(allowCreation && !props.hideAddButton && classes.tableContainer),
     style: {
-      backgroundColor: "#e8e8e8"
+      backgroundColor: '#e8e8e8'
     }
   }, /*#__PURE__*/_react.default.createElement(_core.Table, {
     className: classes.table,
     size: "small",
     "aria-label": "a dense table",
     style: {
-      backgroundColor: "white"
+      backgroundColor: 'white'
     }
   }, /*#__PURE__*/_react.default.createElement(_core.TableHead, null, /*#__PURE__*/_react.default.createElement(_core.TableRow, null, props.checkbox && /*#__PURE__*/_react.default.createElement(_core.TableCell, null), (0, _lodash.default)(fields).filter(function (f) {
-    return f.only === "list" || !f.only;
+    return f.only === 'list' || !f.only;
   }).map(function (f) {
     return /*#__PURE__*/_react.default.createElement(_core.TableCell, {
       key: "header-".concat(f.name)
@@ -200,10 +200,10 @@ function ResourcesAsTable(_ref) {
       defaultChecked: true,
       color: "primary",
       inputProps: {
-        "aria-label": "secondary checkbox"
+        'aria-label': 'secondary checkbox'
       }
     })), (0, _lodash.default)(fields).filter(function (f) {
-      return f.only === "list" || !f.only;
+      return f.only === 'list' || !f.only;
     }).map(function (f) {
       return /*#__PURE__*/_react.default.createElement(_core.TableCell, {
         key: "row-".concat(r.id, "-").concat(f.name),
@@ -211,7 +211,7 @@ function ResourcesAsTable(_ref) {
         scope: "row",
         className: selected === r.id ? classes.selectedRow : classes.notSelectedRow
       }, renderField(r, f));
-    }).value(), " ", allowCreation && /*#__PURE__*/_react.default.createElement(_core.TableCell, {
+    }).value(), ' ', allowCreation && /*#__PURE__*/_react.default.createElement(_core.TableCell, {
       component: "th",
       scope: "row",
       className: selected === r.id ? classes.selectedRow : classes.notSelectedRow
@@ -249,8 +249,11 @@ function ResourcesAsTable(_ref) {
 
 ResourcesAsTable.propTypes = {
   model: _propTypes.default.shape({
-    fields: _propTypes.default.array.isRequired
-  })
+    fields: _propTypes.default.arrayOf(_propTypes.default.object).isRequired
+  }).isRequired,
+  resources: _propTypes.default.arrayOf(_propTypes.default.object).isRequired,
+  selected: _propTypes.default.number,
+  setSelected: _propTypes.default.func
 };
 var _default = ResourcesAsTable;
 exports.default = _default;

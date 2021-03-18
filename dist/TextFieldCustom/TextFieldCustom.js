@@ -10,8 +10,8 @@ var _core = require("@material-ui/core");
 var TextFieldCustom = (0, _core.withStyles)(function () {
   return {
     root: {
-      backgroundColor: "white",
-      marginBottom: "10px"
+      backgroundColor: 'white',
+      marginBottom: '10px'
     }
   };
 })(_core.TextField);

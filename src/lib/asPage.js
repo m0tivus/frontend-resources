@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from '@material-ui/core'
 
-import PageContainer from "./PageContainer";
+import PageContainer from './PageContainer'
 
 const asPage = (config) => (WrappedElement) => {
   const AsPage = (props) => (
@@ -20,8 +20,11 @@ const asPage = (config) => (WrappedElement) => {
         </Grid>
       </Grid>
     </PageContainer>
-  );
-  return AsPage;
-};
+  )
 
-export default asPage;
+  AsPage.propTypes = { ...WrappedElement.propTypes }
+
+  return AsPage
+}
+
+export default asPage

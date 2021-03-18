@@ -1,6 +1,6 @@
 {
   "name": "@m0tivus/frontend-resources",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
@@ -45,6 +45,7 @@
     "@testing-library/user-event": "^12.8.3",
     "clsx": "^1.1.1",
     "date-fns": "^2.19.0",
+    "eslint-plugin-react": "^7.22.0",
     "formik": "^2.2.6",
     "lodash": "^4.17.21",
     "notistack": "^1.0.5",
@@ -55,6 +56,6 @@
     "web-vitals": "^1.1.1"
   },
   "dependencies": {
-    "@m0tivus/frontend-resources": "^0.1.8"
+    "@m0tivus/frontend-resources": "^0.1.9"
   }
 }

@@ -1,21 +1,21 @@
-import React from "react";
-import { Grid, Paper } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import React from 'react'
+import { Grid, Paper } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 
 const styles = (theme) => ({
   grid: {
     width: 1200,
     marginTop: 40,
-    [theme.breakpoints.down("sm")]: {
-      width: "calc(100% - 20px)",
+    [theme.breakpoints.down('sm')]: {
+      width: 'calc(100% - 20px)',
     },
   },
   paper: {
     padding: theme.spacing(3),
-    textAlign: "left",
+    textAlign: 'left',
     color: theme.palette.text.secondary,
   },
-});
+})
 
 const PageContainer = ({ children, classes }) => (
   <Grid container justify="center">
@@ -29,6 +29,6 @@ const PageContainer = ({ children, classes }) => (
       </Grid>
     </Grid>
   </Grid>
-);
+)
 
-export default withStyles(styles)(PageContainer);
+export default withStyles(styles)(PageContainer)

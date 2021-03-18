@@ -27,3 +27,20 @@ Para llamar a asPage es necesario que esté envuelto en un ThemeProvider. Y para
     </SnackbarProvider>
 </ThemeProvider>
 ```
+## Componentes
+
+### ResourcesAsTable
+
+blablas
+
+### asPage
+
+blabla
+
+## Publicar una nueva version
+
+Si eres de motivus y necesitas modificar este paquete, debes loguearte en el registro
+
+```
+npm login --registry=https://npm.pkg.github.com/
+```

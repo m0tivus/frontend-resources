@@ -62,38 +62,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var useStyles = (0, _styles.makeStyles)(function (theme) {
   return {
     paper: {
-      position: "absolute",
+      position: 'absolute',
       width: 600,
       backgroundColor: theme.palette.primary.main,
-      color: "white",
+      color: 'white',
       boxShadow: theme.shadows[5],
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      outline: "none",
-      padding: "10px"
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      outline: 'none',
+      padding: '10px'
     },
     avatar: {
-      height: "28px",
-      width: "28px",
-      fontSize: ".8em"
+      height: '28px',
+      width: '28px',
+      fontSize: '.8em'
     },
     yellowTheme: {
-      color: "#fff",
-      backgroundColor: "#bb9832"
+      color: '#fff',
+      backgroundColor: '#bb9832'
     },
     greenTheme: {
-      color: "#fff",
+      color: '#fff',
       backgroundColor: theme.palette.primary.main
     },
     textField: {
-      width: "100%",
-      backgroundColor: "white",
-      marginBottom: "10px"
+      width: '100%',
+      backgroundColor: 'white',
+      marginBottom: '10px'
     },
     addResource: {
-      textTransform: "none",
-      width: "100%"
+      textTransform: 'none',
+      width: '100%'
     }
   };
 });
@@ -119,10 +119,10 @@ function ResourcesModalForm(props) {
   }).filter(function (f) {
     return !f.editable;
   }).filter(function (f) {
-    return f.only === "create" || !f.only;
+    return f.only === 'create' || !f.only;
   }).filter(function (f) {
     return f.model;
-  }).map("model.resourceKey").zipObject(defaultValues).value();
+  }).map('model.resourceKey').zipObject(defaultValues).value();
 
   var _React$useState5 = _react.default.useState(initialSelection),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
@@ -144,11 +144,11 @@ function ResourcesModalForm(props) {
   var fieldNames = (0, _lodash.default)(props.model.fields).filter(function (f) {
     return !f.value;
   }).filter(function (f) {
-    return f.only === "create" || !f.only;
-  }).map("field");
+    return f.only === 'create' || !f.only;
+  }).map('field');
   var form = (0, _formik.useFormik)({
     initialValues: (0, _lodash.default)(fieldNames).zipObject().mapValues(function (_v, k) {
-      return resource ? resource[k] : "";
+      return resource ? resource[k] : '';
     }).value(),
     enableReinitialize: true
   });
@@ -173,7 +173,7 @@ function ResourcesModalForm(props) {
                   break;
                 }
 
-                throw new Error("Missing create function on model");
+                throw new Error('Missing create function on model');
 
               case 2:
                 values = _objectSpread({}, form.values);
@@ -193,11 +193,11 @@ function ResourcesModalForm(props) {
 
               case 10:
                 handleClose();
-                enqueueSnackbar("Agregado con éxito", {
-                  variant: "success",
+                enqueueSnackbar('Agregado con éxito', {
+                  variant: 'success',
                   anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "center"
+                    vertical: 'top',
+                    horizontal: 'center'
                   }
                 });
                 form.resetForm();
@@ -235,7 +235,7 @@ function ResourcesModalForm(props) {
                   break;
                 }
 
-                throw new Error("Missing edit function on model");
+                throw new Error('Missing edit function on model');
 
               case 2:
                 resource_id = ((_props$editingResourc2 = props.editingResource) === null || _props$editingResourc2 === void 0 ? void 0 : _props$editingResourc2.id) || props.resource.id;
@@ -255,11 +255,11 @@ function ResourcesModalForm(props) {
 
               case 9:
                 handleClose();
-                enqueueSnackbar("Editado con éxito", {
-                  variant: "success",
+                enqueueSnackbar('Editado con éxito', {
+                  variant: 'success',
                   anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "center"
+                    vertical: 'top',
+                    horizontal: 'center'
                   }
                 });
                 form.resetForm();
@@ -281,7 +281,7 @@ function ResourcesModalForm(props) {
   var dependantKeys = (0, _lodash.default)(props.model.fields).filter(function (f) {
     return !f.value;
   }).filter(function (f) {
-    return f.only === "create" || !f.only;
+    return f.only === 'create' || !f.only;
   }).map(function (f) {
     if (f.model && f.depends) {
       return f.depends;
@@ -295,7 +295,7 @@ function ResourcesModalForm(props) {
     (0, _lodash.default)(props.model.fields).filter(function (f) {
       return !f.value;
     }).filter(function (f) {
-      return f.only === "create" || !f.only;
+      return f.only === 'create' || !f.only;
     }).each( /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(f) {
         var depends, data;
@@ -350,7 +350,7 @@ function ResourcesModalForm(props) {
     onClose: handleClose,
     "aria-labelledby": "simple-modal-title",
     "aria-describedby": "simple-modal-description"
-  }, mode === "edit" ?
+  }, mode === 'edit' ?
   /*#__PURE__*/
 
   /* FORMULARIO EDICIÓN */
@@ -366,7 +366,7 @@ function ResourcesModalForm(props) {
   }).filter(function (f) {
     return !f.editable;
   }).filter(function (f) {
-    return f.only === "create" || !f.only;
+    return f.only === 'create' || !f.only;
   }).map(function (f) {
     return /*#__PURE__*/_react.default.createElement(_FormElement.default, {
       field: f,
@@ -406,7 +406,7 @@ function ResourcesModalForm(props) {
   }).filter(function (f) {
     return !f.editable;
   }).filter(function (f) {
-    return f.only === "create" || !f.only;
+    return f.only === 'create' || !f.only;
   }).map(function (f) {
     return /*#__PURE__*/_react.default.createElement(_FormElement.default, {
       field: f,

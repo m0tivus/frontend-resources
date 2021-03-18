@@ -28,30 +28,30 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 var TextFieldAlba = (0, _core.withStyles)(function () {
   return {
     root: {
-      backgroundColor: "white",
-      marginBottom: "10px"
+      backgroundColor: 'white',
+      marginBottom: '10px'
     }
   };
 })(function (props) {
   return /*#__PURE__*/_react.default.createElement(_core.TextField, _extends({}, props, {
-    type: props.field.type || "text"
+    type: props.field.type || 'text'
   }));
 });
 var DatePickerAlba = (0, _core.withStyles)(function () {
   return {
     root: {
-      backgroundColor: "white",
-      marginBottom: "10px",
-      width: "100%"
+      backgroundColor: 'white',
+      marginBottom: '10px',
+      width: '100%'
     }
   };
 })(_pickers.DatePicker);
 var AlbaCheckbox = (0, _core.withStyles)(function () {
   return {
     root: {
-      color: "white",
-      "&$checked": {
-        color: "white"
+      color: 'white',
+      '&$checked': {
+        color: 'white'
       }
     },
     checked: {}
@@ -60,9 +60,9 @@ var AlbaCheckbox = (0, _core.withStyles)(function () {
 var useStyles = (0, _core.makeStyles)(function (theme) {
   return {
     textField: {
-      width: "100%",
-      backgroundColor: "white",
-      marginBottom: "10px"
+      width: '100%',
+      backgroundColor: 'white',
+      marginBottom: '10px'
     }
   };
 });
@@ -75,7 +75,7 @@ function FormElement(_ref) {
   var classes = useStyles();
 
   switch (field.type) {
-    case "currency":
+    case 'currency':
       if (field.suggestedValue) {
         return /*#__PURE__*/_react.default.createElement(_FormSuggested.default, _extends({
           field: field,
@@ -98,7 +98,7 @@ function FormElement(_ref) {
         }, props));
       }
 
-    case "boolean":
+    case 'boolean':
       return /*#__PURE__*/_react.default.createElement(_core.Box, {
         width: "100%",
         px: 1
@@ -112,7 +112,7 @@ function FormElement(_ref) {
         label: field.name
       }));
 
-    case "date":
+    case 'date':
       return /*#__PURE__*/_react.default.createElement(DatePickerAlba, _extends({
         variant: "filled",
         inputVariant: "filled",
@@ -139,8 +139,8 @@ function FormElement(_ref) {
             props.setSelectionData(value);
           },
           defaultValue: props.resource ? (0, _lodash.default)(props.resource).get(field.editValue) || {
-            name: "Seleccione ..."
-          } : "" // _(row).get(field.field)
+            name: 'Seleccione ...'
+          } : '' // _(row).get(field.field)
           ,
           renderInput: function renderInput(params) {
             return /*#__PURE__*/_react.default.createElement(_core.TextField, _extends({}, params, {
