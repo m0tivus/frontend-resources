@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Title } from "@m0tivus/frontend-resources";
-import ResourcesAsTable from "./components/ResourcesAsTable";
+import { Title, ResourcesAsTable } from "@m0tivus/frontend-resources";
+//import ResourcesAsTable from "./components/ResourcesAsTable";
 import { SnackbarProvider } from "notistack";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
       { name: "Precio unitario", field: "unit_price", type: "currency" },
     ],
   };
+
   return (
     <div className="App">
       <header className="App-header">
