@@ -4,7 +4,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: ['eslint:recommended', 'react-app', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'react-app'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -16,9 +16,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['prettier', 'react'],
+  plugins: ['react'],
   rules: {
-    'prettier/prettier': 'warn',
+  
     indent: [
       'warn',
       2,

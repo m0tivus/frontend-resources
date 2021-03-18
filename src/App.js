@@ -1,7 +1,7 @@
 import logo from './logo.svg'
 import './App.css'
-import { Title, asPage } from '@m0tivus/frontend-resources'
-import ResourcesAsTable from './lib/ResourcesAsTable'
+import { Title, asPage, ResourcesAsTable } from '@m0tivus/frontend-resources'
+
 import { SnackbarProvider } from 'notistack'
 //import asPage from "./lib/asPage";
 import { ThemeProvider, useTheme } from '@material-ui/core'

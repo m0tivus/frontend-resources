@@ -56,6 +56,6 @@
     "web-vitals": "^1.1.1"
   },
   "dependencies": {
-    "@m0tivus/frontend-resources": "^0.1.9"
+    "@m0tivus/frontend-resources": "^0.1.10"
   }
 }
