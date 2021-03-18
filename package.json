@@ -1,6 +1,6 @@
 {
   "name": "@m0tivus/frontend-resources",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
@@ -55,6 +55,6 @@
     "web-vitals": "^1.1.1"
   },
   "dependencies": {
-    "@m0tivus/frontend-resources": "^0.1.6"
+    "@m0tivus/frontend-resources": "^0.1.7"
   }
 }

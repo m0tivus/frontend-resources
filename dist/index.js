@@ -40,16 +40,16 @@ Object.defineProperty(exports, "TextFieldCustom", {
   }
 });
 
-var _Title = _interopRequireDefault(require("./Title/Title"));
+var _Title = _interopRequireDefault(require("./Title"));
 
-var _ResourcesAsTable = _interopRequireDefault(require("./ResourcesAsTable/ResourcesAsTable"));
+var _ResourcesAsTable = _interopRequireDefault(require("./ResourcesAsTable"));
 
-var _ResourcesModalForm = _interopRequireDefault(require("./ResourcesModalForm/ResourcesModalForm"));
+var _ResourcesModalForm = _interopRequireDefault(require("./ResourcesModalForm"));
 
-var _FormElement = _interopRequireDefault(require("./FormElement/FormElement"));
+var _FormElement = _interopRequireDefault(require("./FormElement"));
 
-var _FormSuggested = _interopRequireDefault(require("./FormSuggested/FormSuggested"));
+var _FormSuggested = _interopRequireDefault(require("./FormSuggested"));
 
-var _TextFieldCustom = _interopRequireDefault(require("./TextFieldCustom/TextFieldCustom"));
+var _TextFieldCustom = _interopRequireDefault(require("./TextFieldCustom"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
