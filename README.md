@@ -2,7 +2,7 @@
 Este paquete contiene los elementos visuales que utilizamos en los proyectos de motivus
 
 ## Instalar paquete
-Para instalar el paquete se requiere que cree un archivo .npmrc en la raíz del proyecto y el contenido del archivo debe debe contener lo siguiente.
+Para instalar el paquete se requiere que cree un archivo .npmrc en la raíz del proyecto y el contenido del archivo debe contener lo siguiente.
 
 ```
 @m0tivus:registry=https://npm.pkg.github.com/
@@ -34,6 +34,7 @@ Para llamar a asPage es necesario que esté envuelto en un ThemeProvider. Y para
 Renderiza una tabla, con opciones para editar y eliminar. Ejemplo:
 
 ```jsx
+import { ResourcesAsTable } from '@m0tivus/frontend-resources'
 
 //Model fields y funciones agregar, editar, eliminar
 const model= {
@@ -67,7 +68,15 @@ return(
 
 ### asPage
 
-En desarrollo....
+Envuelve un componente en un contenedor.
+
+```jsx
+import { asPage } from '@m0tivus/frontend-resources'
+
+const Page = asPage({ title: 'Title' })(Component)
+//Las props son las que usa Component
+<Page props />
+```
 
 ## Publicar una nueva version
 
@@ -76,7 +85,7 @@ Si eres de motivus y necesitas modificar este paquete, debes loguearte en el reg
 ```
 npm login --registry=https://npm.pkg.github.com/
 ```
-Donde usuario es tu usuaro de github y password es el token generado
+Donde usuario es tu usuario de github y password es el token generado
 
 Para publicar una nueva versión del paquete se deben seguir los pasos:
 
