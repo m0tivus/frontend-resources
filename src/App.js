@@ -1,27 +1,27 @@
-import logo from './logo.svg'
-import './App.css'
-import { Title, asPage, ResourcesAsTable } from '@m0tivus/frontend-resources'
+import logo from "./logo.svg";
+import "./App.css";
+import { Title, asPage, ResourcesAsTable } from "@m0tivus/frontend-resources";
 
-import { SnackbarProvider } from 'notistack'
+import { SnackbarProvider } from "notistack";
 //import asPage from "./lib/asPage";
-import { ThemeProvider, useTheme } from '@material-ui/core'
+import { ThemeProvider, useTheme } from "@material-ui/core";
 
-const Page = asPage({ title: 'pagina de prueba' })(ResourcesAsTable)
+const Page = asPage({ title: "pagina de prueba" })(ResourcesAsTable);
 
 function App() {
-  const theme = useTheme()
-  const parentSelections = []
+  const theme = useTheme();
+  const parentSelections = [];
   const resources = [
-    { id: 1, name: 'Jelbo', unit_price: 2121 },
-    { id: 2, name: 'Wera', unit_price: 121 },
-  ]
+    { id: 1, name: "Jelbo", unit_price: 2121 },
+    { id: 2, name: "Wera", unit_price: 121 },
+  ];
 
   const model = {
     fields: [
-      { name: 'Nombre', field: 'name' },
-      { name: 'Precio unitario', field: 'unit_price', type: 'currency' },
+      { name: "Nombre", field: "name" },
+      { name: "Precio unitario", field: "unit_price", type: "currency" },
     ],
-  }
+  };
 
   return (
     <div className="App">
@@ -32,7 +32,7 @@ function App() {
         </p>
         <Title />
         <ThemeProvider theme={theme}>
-          <div style={{ width: '100%' }}>
+          <div style={{ width: "100%" }}>
             <SnackbarProvider>
               <Page
                 model={model}
@@ -53,7 +53,7 @@ function App() {
         </a>
       </header>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

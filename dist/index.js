@@ -45,6 +45,12 @@ Object.defineProperty(exports, "asPage", {
     return _asPage.default;
   }
 });
+Object.defineProperty(exports, "withResources", {
+  enumerable: true,
+  get: function get() {
+    return _withResources.default;
+  }
+});
 
 var _Title = _interopRequireDefault(require("./Title"));
 
@@ -59,5 +65,7 @@ var _FormSuggested = _interopRequireDefault(require("./FormSuggested"));
 var _TextFieldCustom = _interopRequireDefault(require("./TextFieldCustom"));
 
 var _asPage = _interopRequireDefault(require("./asPage"));
+
+var _withResources = _interopRequireDefault(require("./withResources"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
