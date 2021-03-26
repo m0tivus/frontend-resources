@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { useFormik } from 'formik'
 import _ from 'lodash'
 import { useSnackbar } from 'notistack'
-import FormElement from '../FormElement/FormElement'
+import FormElement from 'lib/FormElement'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -87,6 +87,7 @@ export default function ResourcesModalForm(props) {
       .mapValues((_v, k) => (resource ? resource[k] : ''))
       .value(),
     enableReinitialize: true,
+    onSubmit: () => null,
   })
 
   const postForm = () => {
@@ -192,9 +193,9 @@ export default function ResourcesModalForm(props) {
         ? React.cloneElement(props.buttonComponent, { onClick: handleOpen })
         : !props.hideAddButton && (
             <Button
-              variant="contained"
-              color="secondary"
-              size="small"
+              variant='contained'
+              color='secondary'
+              size='small'
               className={classes.addResource}
               onClick={handleOpen}
             >
@@ -205,20 +206,21 @@ export default function ResourcesModalForm(props) {
       <Modal
         open={props.openModal ? props.openModal : open}
         onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby='simple-modal-title'
+        aria-describedby='simple-modal-description'
       >
         {mode === 'edit' ? (
           /* FORMULARIO EDICIÓN */
           <div className={classes.paper}>
-            <h2 id="simple-modal-title">Editar {props.title}</h2>
-            <form onSubmit={form.handleSubmit} autoComplete="off">
+            <h2 id='simple-modal-title'>Editar {props.title}</h2>
+            <form onSubmit={form.handleSubmit} autoComplete='off'>
               {_(props.model.fields)
                 .filter((f) => !f.value)
                 .filter((f) => !f.editable)
                 .filter((f) => f.only === 'create' || !f.only)
                 .map((f) => (
                   <FormElement
+                    editMode
                     field={f}
                     resource={resource}
                     resources={props.resources}
@@ -232,18 +234,18 @@ export default function ResourcesModalForm(props) {
                     setSelectionData={(selection) =>
                       f.model
                         ? setSelectionData((prev) => ({
-                          ...prev,
-                          [f.model.resourceKey]: selection,
-                        }))
+                            ...prev,
+                            [f.model.resourceKey]: selection,
+                          }))
                         : {}
                     }
                   />
                 ))
                 .value()}
               <Button
-                variant="contained"
-                color="secondary"
-                type="submit"
+                variant='contained'
+                color='secondary'
+                type='submit'
                 onClick={postEditForm}
               >
                 Confirmar
@@ -253,9 +255,9 @@ export default function ResourcesModalForm(props) {
         ) : (
           /* FORMULARIO CREACIÓN */
           <div className={classes.paper}>
-            <h2 id="simple-modal-title">Añadir {props.title}</h2>
+            <h2 id='simple-modal-title'>Añadir {props.title}</h2>
 
-            <form onSubmit={form.handleSubmit} autoComplete="off">
+            <form onSubmit={form.handleSubmit} autoComplete='off'>
               {_(props.model.fields)
                 .filter((f) => !f.value)
                 .filter((f) => !f.editable)
@@ -274,18 +276,18 @@ export default function ResourcesModalForm(props) {
                     setSelectionData={(selection) =>
                       f.model
                         ? setSelectionData((prev) => ({
-                          ...prev,
-                          [f.model.resourceKey]: selection,
-                        }))
+                            ...prev,
+                            [f.model.resourceKey]: selection,
+                          }))
                         : {}
                     }
                   />
                 ))
                 .value()}
               <Button
-                variant="contained"
-                color="secondary"
-                type="submit"
+                variant='contained'
+                color='secondary'
+                type='submit'
                 onClick={postForm}
               >
                 Confirmar

@@ -1,14 +1,14 @@
 import React from 'react'
-import _ from 'lodash'
-import TextFieldCustom from '../TextFieldCustom/TextFieldCustom'
+import TextFieldCustom from 'lib/TextFieldCustom'
 
 const FormSuggested = ({
   field,
   data,
   setFieldValue: setFormFieldValue,
+  suggestedValue,
   ...props
 }) => {
-  const [fieldValue, setFieldValue] = React.useState('')
+  const [fieldValue, setFieldValue] = React.useState(props.value)
   const [touched, setTouched] = React.useState(false)
   const handleChange = (event) => {
     setFieldValue(event.target.value)
@@ -17,49 +17,44 @@ const FormSuggested = ({
   }
 
   React.useEffect(() => {
-    if (!touched && !props.value) {
-      let value = field.suggestedValue(
-        props.selectionData,
-        {
-          ...props.formValues,
-          ...(props.additionalValues || {}),
-        },
-        props.resources,
-      )
-      if (field.type === 'number' || field.type === 'currency') {
-        value = _.toInteger(value)
-      }
-      if (value !== props.value) {
-        setFieldValue(value)
-        setFormFieldValue(field.field, value)
+    if (touched) {
+      setTouched(false)
+    }
+  }, [suggestedValue])
+
+  React.useEffect(() => {
+    if (!touched) {
+      if (suggestedValue !== props.value) {
+        setFieldValue(suggestedValue)
+        setFormFieldValue(field.field, suggestedValue)
       }
     } else {
-      if (props.value) {
+      if (props.value !== fieldValue) {
         setFieldValue(props.value)
       }
     }
   }, [
     touched,
+    suggestedValue,
     field,
-    props.selectionData,
-    props.formValues,
-    props.additionalValues,
     props.value,
     setFormFieldValue,
-    props.resources,
+    fieldValue,
   ])
 
   return (
     <TextFieldCustom
       fullWidth
       required
-      variant="filled"
+      variant='filled'
+      inputProps={{ role: 'textbox' }}
+      InputProps={props.InputProps || {}}
       type={field.type || 'text'}
       name={field.field}
       label={field.name}
-      {...props}
       value={fieldValue}
       onChange={handleChange}
+      id={field.name}
     />
   )
 }
