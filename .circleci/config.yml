@@ -58,6 +58,8 @@ workflows:
                 - main
       - build
       - publish:
+          requires:
+            - test
           filters:
             branches:
               only:
