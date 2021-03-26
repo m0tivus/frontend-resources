@@ -56,10 +56,16 @@ workflows:
               only:
                 - develop
                 - main
-      - build
-      - publish:
+      - build:
           requires:
             - test
+          filters:
+            branches:
+              only:
+                - main
+      - publish:
+          requires:
+            - build
           filters:
             branches:
               only:
