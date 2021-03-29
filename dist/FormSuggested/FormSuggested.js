@@ -7,19 +7,9 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _lodash = _interopRequireDefault(require("lodash"));
-
-var _TextFieldCustom = _interopRequireDefault(require("../TextFieldCustom/TextFieldCustom"));
+var _TextFieldCustom = _interopRequireDefault(require("lib/TextFieldCustom"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -41,9 +31,10 @@ var FormSuggested = function FormSuggested(_ref) {
   var field = _ref.field,
       data = _ref.data,
       setFormFieldValue = _ref.setFieldValue,
-      props = _objectWithoutProperties(_ref, ["field", "data", "setFieldValue"]);
+      suggestedValue = _ref.suggestedValue,
+      props = _objectWithoutProperties(_ref, ["field", "data", "setFieldValue", "suggestedValue"]);
 
-  var _React$useState = _react.default.useState(''),
+  var _React$useState = _react.default.useState(props.value),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       fieldValue = _React$useState2[0],
       setFieldValue = _React$useState2[1];
@@ -60,35 +51,39 @@ var FormSuggested = function FormSuggested(_ref) {
   };
 
   _react.default.useEffect(function () {
-    if (!touched && !props.value) {
-      var value = field.suggestedValue(props.selectionData, _objectSpread(_objectSpread({}, props.formValues), props.additionalValues || {}), props.resources);
+    if (touched) {
+      setTouched(false);
+    }
+  }, [suggestedValue]);
 
-      if (field.type === 'number' || field.type === 'currency') {
-        value = _lodash.default.toInteger(value);
-      }
-
-      if (value !== props.value) {
-        setFieldValue(value);
-        setFormFieldValue(field.field, value);
+  _react.default.useEffect(function () {
+    if (!touched) {
+      if (suggestedValue !== props.value) {
+        setFieldValue(suggestedValue);
+        setFormFieldValue(field.field, suggestedValue);
       }
     } else {
-      if (props.value) {
+      if (props.value !== fieldValue) {
         setFieldValue(props.value);
       }
     }
-  }, [touched, field, props.selectionData, props.formValues, props.additionalValues, props.value, setFormFieldValue, props.resources]);
+  }, [touched, suggestedValue, field, props.value, setFormFieldValue, fieldValue]);
 
-  return /*#__PURE__*/_react.default.createElement(_TextFieldCustom.default, _extends({
+  return /*#__PURE__*/_react.default.createElement(_TextFieldCustom.default, {
     fullWidth: true,
     required: true,
     variant: "filled",
+    inputProps: {
+      role: 'textbox'
+    },
+    InputProps: props.InputProps || {},
     type: field.type || 'text',
     name: field.field,
-    label: field.name
-  }, props, {
+    label: field.name,
     value: fieldValue,
-    onChange: handleChange
-  }));
+    onChange: handleChange,
+    id: field.name
+  });
 };
 
 var _default = FormSuggested;

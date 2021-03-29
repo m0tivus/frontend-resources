@@ -21,7 +21,7 @@ var _lodash = _interopRequireDefault(require("lodash"));
 
 var _notistack = require("notistack");
 
-var _FormElement = _interopRequireDefault(require("../FormElement/FormElement"));
+var _FormElement = _interopRequireDefault(require("lib/FormElement"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -150,7 +150,10 @@ function ResourcesModalForm(props) {
     initialValues: (0, _lodash.default)(fieldNames).zipObject().mapValues(function (_v, k) {
       return resource ? resource[k] : '';
     }).value(),
-    enableReinitialize: true
+    enableReinitialize: true,
+    onSubmit: function onSubmit() {
+      return null;
+    }
   });
 
   var postForm = function postForm() {
@@ -369,6 +372,7 @@ function ResourcesModalForm(props) {
     return f.only === 'create' || !f.only;
   }).map(function (f) {
     return /*#__PURE__*/_react.default.createElement(_FormElement.default, {
+      editMode: true,
       field: f,
       resource: resource,
       resources: props.resources,
