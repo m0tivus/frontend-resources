@@ -1,9 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Title, asPage, ResourcesAsTable } from "@m0tivus/frontend-resources";
+import { Title, asPage } from "@m0tivus/frontend-resources";
+
+import ResourcesAsTable from "./lib/ResourcesAsTable";
+//import asPage from "./lib/asPage";
 
 import { SnackbarProvider } from "notistack";
-//import asPage from "./lib/asPage";
+
 import { ThemeProvider, useTheme } from "@material-ui/core";
 
 const Page = asPage({ title: "pagina de prueba" })(ResourcesAsTable);
