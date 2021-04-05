@@ -12,7 +12,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 
 import _ from 'lodash'
 
-import FormSuggested from 'lib/FormSuggested'
+import FormSuggested from './FormSuggested'
 import { DatePicker } from '@material-ui/pickers'
 
 const TextFieldAlba = withStyles(() => ({

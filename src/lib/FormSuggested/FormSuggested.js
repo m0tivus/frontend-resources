@@ -1,5 +1,5 @@
 import React from 'react'
-import TextFieldCustom from 'lib/TextFieldCustom'
+import TextFieldCustom from './TextFieldCustom'
 
 const FormSuggested = ({
   field,
