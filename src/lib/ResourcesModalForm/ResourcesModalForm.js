@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { useFormik } from 'formik'
 import _ from 'lodash'
 import { useSnackbar } from 'notistack'
-import FormElement from './FormElement'
+import FormElement from '../FormElement'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
