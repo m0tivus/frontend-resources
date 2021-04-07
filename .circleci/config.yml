@@ -42,13 +42,10 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo/dist
-      - run:
-          name: Set registry URL
-          command: npm set registry https://npm.pkg.github.com/
+          at: ~/repo
       - run:
           name: Publish package
-          command: npm publish
+          command: cd dist && npm publish
 
 workflows:
   test-deploy:
