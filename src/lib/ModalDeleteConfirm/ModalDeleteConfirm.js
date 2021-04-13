@@ -55,14 +55,6 @@ export default function ModalDeleteConfirm({
       >
         <div className={classes.paper}>
           <p> ¿Está seguro que desea eliminar el elemento? </p>
-          {console.log(
-            "delete",
-            removeResource,
-            r,
-            enqueueSnackbar,
-            setSelected,
-            props
-          )}
           <Button
             variant="contained"
             color="secondary"
