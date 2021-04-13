@@ -1,7 +1,7 @@
 {
   "name": "@m0tivus/frontend-resources",
   "description": "motivus REST resources abstraction, useful for usual CRUD requirements.",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
