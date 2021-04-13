@@ -41,7 +41,11 @@ export default function ModalDeleteConfirm({
 
   return (
     <div>
-      <DeleteIcon fontSize="small" onClick={handleOpen} />
+      {props.buttonComponent ? (
+        React.cloneElement(props.buttonComponent, { onClick: handleOpen })
+      ) : (
+        <DeleteIcon fontSize="small" onClick={handleOpen} />
+      )}
 
       <Modal
         open={open}
