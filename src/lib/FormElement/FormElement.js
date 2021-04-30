@@ -197,7 +197,7 @@ function FormElement({ field, data, editMode, ...props }) {
           <Autocomplete
             id={field.field}
             options={data}
-            getOptionLabel={(option) => (field.getOptionLabel ? field.getOptionLabel(option) : option.name) || ''}
+            getOptionLabel={(option) => (field.model?.getOptionLabel ? field.model.getOptionLabel(option) : option.name) || ''}
             onChange={(_event, value) => {
               const newValue = (value && value.id) || undefined
               props.setFieldValue(field.field, newValue)
