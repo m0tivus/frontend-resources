@@ -55,6 +55,7 @@ function getSuggestedValue(
   formValues,
   additionalValues,
   resources,
+  resource = {},
 ) {
   let value = field.suggestedValue(
     selectionData,
@@ -63,6 +64,7 @@ function getSuggestedValue(
       ...(additionalValues || {}),
     },
     resources,
+    resource,
   )
   if (field.type === 'number' || field.type === 'currency') {
     value = _.toInteger(value)
@@ -83,6 +85,7 @@ function FormElement({ field, data, editMode, ...props }) {
         props.formValues,
         props.additionalValues,
         props.resources,
+        props.resource,
       )
     : undefined
   useEffect(() => {
@@ -193,21 +196,31 @@ function FormElement({ field, data, editMode, ...props }) {
 
     default:
       if (field.model) {
+        const initialValue = _(props.resource).get(
+          field.editValue || field.field,
+        )
+        const defaultValue = props.resource
+          ? (_.isObject(initialValue)
+              ? initialValue
+              : _(data).find({ id: initialValue })) || null
+          : null
+
         return (
           <Autocomplete
             id={field.field}
             options={data}
-            getOptionLabel={(option) => (field.model?.getOptionLabel ? field.model.getOptionLabel(option) : option.name) || ''}
+            getOptionLabel={(option) =>
+              (field.model?.getOptionLabel
+                ? field.model.getOptionLabel(option)
+                : option.name) || ''
+            }
             onChange={(_event, value) => {
               const newValue = (value && value.id) || undefined
               props.setFieldValue(field.field, newValue)
               props.setSelectionData(value)
             }}
-            defaultValue={
-              props.resource
-                ? _(props.resource).get(field.editValue) || null
-                : null
-            }
+            defaultValue={defaultValue}
+            getOptionSelected={(option, value) => option.id === Number(value)}
             renderInput={(params) => (
               <TextField
                 {...params}

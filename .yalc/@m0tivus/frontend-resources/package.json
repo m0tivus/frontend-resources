@@ -33,21 +33,7 @@
     ]
   },
   "main": "index.js",
-  "devDependencies": {
-    "@babel/cli": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.3.0",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.1"
-  },
   "dependencies": {
-    "@m0tivus/frontend-resources": "file:.yalc/@m0tivus/frontend-resources",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -65,5 +51,6 @@
   "peerDependencies": {
     "@material-ui/core": "4.x",
     "@material-ui/pickers": "3.x"
-  }
+  },
+  "yalcSig": "22e8e27b6fa81225352a359e46b8f365"
 }

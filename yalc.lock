@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@m0tivus/frontend-resources": {
+      "signature": "22e8e27b6fa81225352a359e46b8f365",
+      "file": true
+    }
+  }
+}

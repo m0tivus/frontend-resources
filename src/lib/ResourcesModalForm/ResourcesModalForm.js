@@ -84,7 +84,7 @@ export default function ResourcesModalForm(props) {
   const form = useFormik({
     initialValues: _(fieldNames)
       .zipObject()
-      .mapValues((_v, k) => (resource ? resource[k] : ''))
+      .mapValues((_v, k) => (resource ? _.get(resource, k) : ''))
       .value(),
     enableReinitialize: true,
     onSubmit: () => null,
@@ -102,6 +102,7 @@ export default function ResourcesModalForm(props) {
       }
 
       const { id } = await props.model.create(
+        ...(props.routeParams || []),
         ...(props.parentSelections || []),
         values,
         props.externalState,
@@ -135,6 +136,7 @@ export default function ResourcesModalForm(props) {
       await props.model.edit(
         resource_id,
         values,
+        ...(props.routeParams || []),
         ...(props.parentSelections || []),
       )
       await props.refreshData()
@@ -192,16 +194,16 @@ export default function ResourcesModalForm(props) {
       {props.buttonComponent
         ? React.cloneElement(props.buttonComponent, { onClick: handleOpen })
         : !props.hideAddButton && (
-            <Button
-              variant='contained'
-              color='secondary'
-              size='small'
-              className={classes.addResource}
-              onClick={handleOpen}
-            >
+          <Button
+            variant='contained'
+            color='secondary'
+            size='small'
+            className={classes.addResource}
+            onClick={handleOpen}
+          >
               Añadir {props.title}
-            </Button>
-          )}
+          </Button>
+        )}
 
       <Modal
         open={props.openModal ? props.openModal : open}
@@ -234,9 +236,9 @@ export default function ResourcesModalForm(props) {
                     setSelectionData={(selection) =>
                       f.model
                         ? setSelectionData((prev) => ({
-                            ...prev,
-                            [f.model.resourceKey]: selection,
-                          }))
+                          ...prev,
+                          [f.model.resourceKey]: selection,
+                        }))
                         : {}
                     }
                   />
@@ -276,9 +278,9 @@ export default function ResourcesModalForm(props) {
                     setSelectionData={(selection) =>
                       f.model
                         ? setSelectionData((prev) => ({
-                            ...prev,
-                            [f.model.resourceKey]: selection,
-                          }))
+                          ...prev,
+                          [f.model.resourceKey]: selection,
+                        }))
                         : {}
                     }
                   />

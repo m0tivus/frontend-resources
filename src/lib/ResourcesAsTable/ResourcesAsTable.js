@@ -1,5 +1,5 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 
 import {
   Table,
@@ -8,25 +8,24 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   ButtonGroup,
-  Button,
   IconButton,
+  Tooltip,
   Grid,
   Typography,
   Checkbox,
-} from "@material-ui/core";
+} from '@material-ui/core'
 
-import { Edit as EditIcon, Delete as DeleteIcon } from "@material-ui/icons/";
+import { Edit as EditIcon, Check, Clear } from '@material-ui/icons/'
 
-import PropTypes from "prop-types";
-import _ from "lodash";
-import clsx from "clsx";
+import PropTypes from 'prop-types'
+import _ from 'lodash'
+import clsx from 'clsx'
 
-import ResourcesModalForm from "../ResourcesModalForm/ResourcesModalForm";
-import ModalDeleteConfirm from "../ModalDeleteConfirm/ModalDeleteConfirm";
-import { format } from "date-fns";
-import { useSnackbar } from "notistack";
+import ResourcesModalForm from '../ResourcesModalForm/ResourcesModalForm'
+import ModalDeleteConfirm from '../ModalDeleteConfirm/ModalDeleteConfirm'
+import { format } from 'date-fns'
+import { useSnackbar } from 'notistack'
 
 const useStyles = makeStyles((theme) => ({
   table: {},
@@ -35,53 +34,57 @@ const useStyles = makeStyles((theme) => ({
   },
   selectedRow: {
     backgroundColor: theme.palette.primary.main,
-    color: "white",
+    color: 'white',
   },
   tableContainer: {
-    position: "relative",
-    height: "calc(100% - 8px)",
-    width: "calc(100% - 8px)",
-    margin: "4px",
+    position: 'relative',
+    height: 'calc(100% - 8px)',
+    width: 'calc(100% - 8px)',
+    margin: '4px',
     top: 0,
     left: 0,
   },
-}));
+}))
 
 async function removeResource(props, resource, enqueueSnackbar, setSelected) {
-  if (setSelected && props.parentSelections) {
-    await props.model.remove(...props.parentSelections, resource.id);
-    setSelected(undefined);
+  if (setSelected && (props.parentSelections || props.routeParams)) {
+    await props.model.remove(
+      ...(props.routeParams || []),
+      ...(props.parentSelections || []),
+      resource.id,
+    )
+    setSelected(undefined)
   } else {
-    await props.model.remove(resource.id);
+    await props.model.remove(resource.id)
   }
 
-  await props.refreshData();
-  enqueueSnackbar("Se eliminó con éxito", {
-    variant: "success",
+  await props.refreshData()
+  enqueueSnackbar('Se eliminó con éxito', {
+    variant: 'success',
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "center",
+      vertical: 'top',
+      horizontal: 'center',
     },
-  });
+  })
 }
 
-const formatter = new Intl.NumberFormat("es-CL", {
-  style: "currency",
-  currency: "CLP",
-});
+const formatter = new Intl.NumberFormat('es-CL', {
+  style: 'currency',
+  currency: 'CLP',
+})
 
 function renderField(row, field) {
-  const value = field.value ? field.value(row) : _(row).get(field.field);
+  const value = field.value ? field.value(row) : _(row).get(field.field)
 
   switch (field.type) {
-    case "currency":
-      return formatter.format(value);
-    case "date":
-      return format(new Date(value), "dd/MM/yyyy");
-    case "boolean":
-      return value ? "Si" : "No";
+    case 'currency':
+      return formatter.format(value)
+    case 'date':
+      return format(new Date(value), 'dd/MM/yyyy')
+    case 'boolean':
+      return value ? <Check /> : <Clear />
     default:
-      return value;
+      return value
   }
 }
 
@@ -93,9 +96,9 @@ function ResourcesAsTable({
   allowCreation = true,
   ...props
 }) {
-  const { fields } = props.model;
-  const classes = useStyles();
-  const { enqueueSnackbar } = useSnackbar();
+  const { fields } = props.model
+  const classes = useStyles()
+  const { enqueueSnackbar } = useSnackbar()
 
   return (
     enoughSelections && (
@@ -103,21 +106,21 @@ function ResourcesAsTable({
         <TableContainer
           /* component={Paper} */
           className={clsx(
-            allowCreation && !props.hideAddButton && classes.tableContainer
+            allowCreation && !props.hideAddButton && classes.tableContainer,
           )}
-          style={{ backgroundColor: "#e8e8e8" }}
+          style={{ backgroundColor: '#e8e8e8' }}
         >
           <Table
             className={classes.table}
-            size="small"
-            aria-label="a dense table"
-            style={{ backgroundColor: "white" }}
+            size='small'
+            aria-label='a dense table'
+            style={{ backgroundColor: 'white' }}
           >
             <TableHead>
               <TableRow>
                 {props.checkbox && <TableCell></TableCell>}
                 {_(fields)
-                  .filter((f) => f.only === "list" || !f.only)
+                  .filter((f) => f.only === 'list' || !f.only)
                   .map((f) => (
                     <TableCell key={`header-${f.name}`}>{f.name}</TableCell>
                   ))
@@ -136,21 +139,21 @@ function ResourcesAsTable({
                       onClick={() => (setSelected ? setSelected(r.id) : null)}
                     >
                       {props.checkbox && (
-                        <TableCell component="th" scope="row">
+                        <TableCell component='th' scope='row'>
                           <Checkbox
                             defaultChecked
-                            color="primary"
-                            inputProps={{ "aria-label": "secondary checkbox" }}
+                            color='primary'
+                            inputProps={{ 'aria-label': 'secondary checkbox' }}
                           />
                         </TableCell>
                       )}
                       {_(fields)
-                        .filter((f) => f.only === "list" || !f.only)
+                        .filter((f) => f.only === 'list' || !f.only)
                         .map((f) => (
                           <TableCell
                             key={`row-${r.id}-${f.name}`}
-                            component="th"
-                            scope="row"
+                            component='th'
+                            scope='row'
                             className={
                               selected === r.id
                                 ? classes.selectedRow
@@ -160,31 +163,31 @@ function ResourcesAsTable({
                             {renderField(r, f)}
                           </TableCell>
                         ))
-                        .value()}{" "}
+                        .value()}{' '}
                       {allowCreation && (
                         <TableCell
-                          component="th"
-                          scope="row"
+                          component='th'
+                          scope='row'
                           className={
                             selected === r.id
                               ? classes.selectedRow
                               : classes.notSelectedRow
                           }
                         >
-                          <ButtonGroup variant="contained" color="primary">
+                          <ButtonGroup variant='contained' color='primary'>
                             <ResourcesModalForm
-                              mode="edit"
+                              mode='edit'
                               resource={r}
                               resources={resources}
                               buttonComponent={
-                                <IconButton color="inherit" variant="contained">
-                                  <EditIcon fontSize="small" />
+                                <IconButton color='inherit' variant='contained'>
+                                  <EditIcon fontSize='small' />
                                 </IconButton>
                               }
                               {...props}
                             />
 
-                            <IconButton color="inherit" variant="contained">
+                            <IconButton color='inherit' variant='contained'>
                               <ModalDeleteConfirm
                                 removeResource={removeResource}
                                 r={r}
@@ -193,6 +196,20 @@ function ResourcesAsTable({
                                 {...props}
                               />
                             </IconButton>
+                            {props.nestedResourceActions &&
+                              _(props.nestedResourceActions)
+                                .map(({ icon: Icon, ...a }) => (
+                                  <Tooltip title={a.tooltip}>
+                                    <IconButton
+                                      color='inherit'
+                                      variant='contained'
+                                      onClick={(e) => a.onClick(e, r)}
+                                    >
+                                      <Icon />
+                                    </IconButton>
+                                  </Tooltip>
+                                ))
+                                .value()}
                           </ButtonGroup>
                         </TableCell>
                       )}
@@ -209,7 +226,7 @@ function ResourcesAsTable({
               ) : (
                 <TableRow>
                   <TableCell>
-                    <Typography variant="caption"> No hay datos</Typography>
+                    <Typography variant='caption'> No hay datos</Typography>
                   </TableCell>
                 </TableRow>
               )}
@@ -225,7 +242,7 @@ function ResourcesAsTable({
         </TableContainer>
       </Grid>
     )
-  );
+  )
 }
 
 ResourcesAsTable.propTypes = {
@@ -235,6 +252,6 @@ ResourcesAsTable.propTypes = {
   resources: PropTypes.arrayOf(PropTypes.object).isRequired,
   selected: PropTypes.number,
   setSelected: PropTypes.func,
-};
+}
 
-export default ResourcesAsTable;
+export default ResourcesAsTable
